@@ -17,7 +17,21 @@ int main() {
 
     for(int i=0; i<sizeof(texts)/sizeof(string); i++, pTexts++) {
         cout << *pTexts << " " << flush;
-        pTexts++;
+    }
+
+    cout << endl;
+
+    string *pElement = &texts[0];
+    string *pEnd = &texts[2];
+
+    while(true) {
+        cout << *pElement << " " << flush;
+
+        if(pElement == pEnd) {
+            break;
+        }
+        
+        pElement++;
     }
 
     return 0;
