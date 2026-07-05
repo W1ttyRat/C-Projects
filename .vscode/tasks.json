@@ -2,12 +2,15 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: g++.exe build active file",
+            "label": "C/C++: g++.exe build active file with SDL3",
             "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${fileDirname}\\*.cpp",
+                "${file}",
+                "-IC:\\Users\\poisi\\Documents\\C-Projects\\SDL3-3.4.12\\x86_64-w64-mingw32\\include",
+                "-LC:\\Users\\poisi\\Documents\\C-Projects\\SDL3-3.4.12\\x86_64-w64-mingw32\\lib",
+                "-lSDL3",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
