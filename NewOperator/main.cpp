@@ -26,13 +26,31 @@ public:
     }
 };
 
+Animal *createAnimal() {
+    Animal *pAnimal = new Animal();
+    pAnimal->setName("Jerry");
+    return pAnimal;
+}
+
 int main() {
-    Animal *pCat1 = new Animal();
+
+    // new operator is used to allocate memory for an object on the heap. It returns a pointer to the allocated memory.
+
+    /* Animal *pCat1 = new Animal();
     pCat1->setName("Tom");
     pCat1->speak();
     delete pCat1;
 
-    cout << sizeof(pCat1) << endl;
+    cout << sizeof(pCat1) << endl; */
+
+    // ===================================================
+
+    // returning objects from functions
+
+    Animal *pFrog = createAnimal();
+    pFrog->speak();
+
+    delete pFrog; // Free the allocated memory to avoid memory leak
 
     return 0;
 }
