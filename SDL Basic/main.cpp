@@ -1,77 +1,52 @@
 #include <SDL3/SDL.h>
 #include <iostream>
+#include "Screen.h"
 
 using namespace std;
+using namespace SDL_Screen;
+
+/*========================================================*/
+/* to run the code, in vscode press the "run & debug" button on the left under the "source control" */
+/*========================================================*/
 
 int main() {
 
-    const int SCREEN_WIDTH = 800;
-    const int SCREEN_HEIGHT = 600;
+    Screen screen;
 
-    if (!SDL_Init(SDL_INIT_VIDEO)) {
-        cout << "sdl init failed" << endl;
+    if(!screen.init()) {
+        cout << "Error initalizing SDL." << endl;
         return 1;
     }
-    cout << "sdl init success" << endl;
 
-    SDL_Window *window = SDL_CreateWindow("Particle fire explosion", SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_RESIZABLE);
 
-    if(window == NULL) {
-        cout << "window creation failed" << endl;
-        SDL_Quit();
-        return 2;
-    }
 
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, NULL);
-
-    if(renderer == NULL) {
-        cout << "Could not create renderer: " << SDL_GetError() << endl;
-        SDL_Quit();
-        return 3;
-    }
-
-    SDL_Texture *texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STATIC, SCREEN_WIDTH, SCREEN_HEIGHT);
-
-    if(texture == NULL) {
-        cout << "Could not create texture: " << SDL_GetError() << endl;
-        SDL_Quit();
-        return 4;
-    }
-
-    Uint32 *buffer = new Uint32[SCREEN_WIDTH * SCREEN_HEIGHT];
-
-    memset(buffer, 0x00, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(Uint32));
-
-    for(int i=0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++) {
-        buffer[i] = 0xFFFF00FF;
-    }
-
-    SDL_UpdateTexture(texture, NULL, buffer, SCREEN_WIDTH*sizeof(Uint32));
-    SDL_RenderClear(renderer);
-    SDL_RenderTexture(renderer, texture, NULL, NULL);
-    SDL_RenderPresent(renderer);
+    
 
     bool quit = false;
     
-    SDL_Event event;
+    
 
-    while(!quit) {
+    while(true) {
         // update particles
-        // draw particles
-        // check for messages/events
 
-        while(SDL_PollEvent(&event)) {
-            if(event.type == SDL_EVENT_QUIT) {
-                quit = true;
+        // draw particles
+        for(int y=0; y < Screen::SCREEN_HEIGHT; y++) {
+            for(int x=0; x < Screen::SCREEN_WIDTH; x++) {
+                screen.setPixel(x, y, 128, 0, 255);
             }
+        }
+
+        screen.setPixel(400, 300, 255, 255, 255);
+
+        // draw the screen
+        screen.update();
+
+        if(screen.processEvents() == false) {
+            break;
         }
     }
     
-    delete [] buffer;
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyTexture(texture);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
+    screen.close();
 
     return 0;
 }
