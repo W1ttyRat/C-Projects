@@ -31,6 +31,8 @@
                 "-g",
                 "C:\\Users\\poisi\\Documents\\C-Projects\\SDL Basic\\main.cpp",
                 "C:\\Users\\poisi\\Documents\\C-Projects\\SDL Basic\\Screen.cpp",
+                "C:\\Users\\poisi\\Documents\\C-Projects\\SDL Basic\\Swarm.cpp",
+                "C:\\Users\\poisi\\Documents\\C-Projects\\SDL Basic\\Particle.cpp",
                 "-IC:\\Users\\poisi\\Documents\\C-Projects\\SDL3-3.4.12\\x86_64-w64-mingw32\\include",
                 "-LC:\\Users\\poisi\\Documents\\C-Projects\\SDL3-3.4.12\\x86_64-w64-mingw32\\lib",
                 "-lSDL3",
