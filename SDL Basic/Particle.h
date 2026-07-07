@@ -8,13 +8,17 @@ struct Particle {
     double m_x; // member variable for x position
     double m_y; // member variable for y position
 
-    double m_xSpeed;
-    double m_ySpeed;
+private:
+    double m_speed;
+    double m_direction;
+
+private:
+    void init();
 
 public:
     Particle();
     virtual ~Particle();
-    void update();
+    void update(int interval);
 };
 
 }
