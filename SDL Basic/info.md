@@ -1,0 +1,1 @@
+the release.rar should have the necessary dll's to run the main1 and main2 executables

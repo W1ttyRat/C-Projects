@@ -1,2 +1,0 @@
-main1 -> cool implode
-main2 -> less implode-y
